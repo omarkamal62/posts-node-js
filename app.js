@@ -67,12 +67,7 @@ mongoose
   .connect(process.env.DB_URL)
   .then((result) => {
     const server = app.listen(process.env.PORT);
-    const io = require("./socket").init(server, {
-      cors: {
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST"],
-      },
-    });
+    const io = require("./socket").init(server);
     io.on("connection", (socket) => {
       console.log("Client Connected");
     });
