@@ -7,6 +7,7 @@ const multer = require("multer");
 require("dotenv").config();
 const { graphqlHTTP } = require("express-graphql");
 const auth = require("./middleware/auth");
+const { clearImage } = require("./util/file");
 
 const graphqlSchema = require("./graphql/schema");
 const graphqlReslover = require("./graphql/resolvers");
@@ -112,8 +113,3 @@ mongoose
     app.listen(process.env.PORT);
   })
   .catch((err) => console.log(err));
-
-const clearImage = (filePath) => {
-  filePath = path.join(__dirname, "..", filePath);
-  fs.unlink(filePath, (err) => console.log(err));
-};
